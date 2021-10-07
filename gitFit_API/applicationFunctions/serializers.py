@@ -16,5 +16,70 @@ class ClientTrailerSerializer(serializers.ModelSerializer):
 
 class ForumPostSerializer(serializers.ModelSerializer):
     class Meta:
-        Model = ClientTrainer
-        fields = ['user', 'body']
+        Model = ForumPost
+        fields = ['id', 'user', 'body']
+
+class ForumReplySerializer(serializers.ModelSerializer):
+    class Meta:
+        Model = ForumReply
+        fields = ['id', 'comment', 'body']
+
+class TrainerReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        Model = TrainerReview
+        fields = ['id', 'user', 'body']
+
+class TrainerReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        Model = TrainerReview
+        fields = ['id', 'user', 'body']
+
+class TrainerBlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        Model = TrainerBlog
+        fields = ['id', 'user', 'body']
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        Model = Workout
+        fields = [
+            'id', 
+            'user', 
+            'notes', 
+            'day1ex1', 
+            'day1ex1sets', 
+            'day1ex1reps', 
+            'day1ex2', 
+            'day1ex2reps', 
+            'day1ex2sets', 
+            'day1ex3', 
+            'day1ex3sets', 
+            'day1ex3reps', 
+            'day1ex4', 
+            'day1ex4sets', 
+            'day1ex4reps', 
+            'day2ex1', 
+            'day2ex1sets', 
+            'day2ex1reps', 
+            'day2ex2', 
+            'day2ex2reps', 
+            'day2ex2sets', 
+            'day2ex3', 
+            'day2ex3sets', 
+            'day2ex3reps', 
+            'day2ex4', 
+            'day2ex4sets', 
+            'day2ex4reps', 
+            'day3ex1', 
+            'day3ex1sets', 
+            'day3ex1reps', 
+            'day3ex2', 
+            'day3ex2reps', 
+            'day3ex2sets', 
+            'day3ex3', 
+            'day3ex3sets', 
+            'day3ex3reps', 
+            'day3ex4', 
+            'day3ex4sets', 
+            'day3ex4reps'
+        ]
