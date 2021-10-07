@@ -9,40 +9,36 @@ from .models import TrainerBlog
 from .models import TrainerReview
 from .models import Workout
 
-class ClientTrailerSerializer(serializers.ModelSerializer):
+class ClientTrainerSerializer(serializers.ModelSerializer):
     class Meta:
-        Model = ClientTrainer
-        fields = ['id', 'client','trainer']
+        model = ClientTrainer
+        fields = ('id', 'client','trainer')
 
 class ForumPostSerializer(serializers.ModelSerializer):
     class Meta:
-        Model = ForumPost
-        fields = ['id', 'user', 'body']
+        model = ForumPost
+        fields = ('id', 'user', 'body')
 
 class ForumReplySerializer(serializers.ModelSerializer):
     class Meta:
-        Model = ForumReply
-        fields = ['id', 'comment', 'body']
+        model = ForumReply
+        fields = ('id', 'comment', 'body')
 
 class TrainerReviewSerializer(serializers.ModelSerializer):
     class Meta:
-        Model = TrainerReview
-        fields = ['id', 'user', 'body']
+        model = TrainerReview
+        fields = ('id', 'user', 'body')
 
-class TrainerReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        Model = TrainerReview
-        fields = ['id', 'user', 'body']
 
 class TrainerBlogSerializer(serializers.ModelSerializer):
     class Meta:
-        Model = TrainerBlog
-        fields = ['id', 'user', 'body']
+        model = TrainerBlog
+        fields = ('id', 'user', 'body')
 
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
-        Model = Workout
-        fields = [
+        model = Workout
+        fields = (
             'id', 
             'user', 
             'notes', 
@@ -82,4 +78,4 @@ class WorkoutSerializer(serializers.ModelSerializer):
             'day3ex4', 
             'day3ex4sets', 
             'day3ex4reps'
-        ]
+        )
