@@ -9,3 +9,4 @@ class CustomUser(AbstractUser):
     goal = models.CharField(max_length=75,null=True)
     calories = models.IntegerField(null=True)
     gender = models.CharField(max_length=15,null=True)
+    experience = models.IntegerField(null=True)
