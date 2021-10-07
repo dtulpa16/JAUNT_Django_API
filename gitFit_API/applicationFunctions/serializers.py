@@ -8,11 +8,15 @@ from .models import ForumReply
 from .models import TrainerBlog
 from .models import TrainerReview
 from .models import Workout
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 
 class ClientTrainerSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClientTrainer
         fields = ('id', 'client','trainer')
+ 
 
 class ForumPostSerializer(serializers.ModelSerializer):
     class Meta:

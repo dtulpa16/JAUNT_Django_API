@@ -11,7 +11,7 @@ from .models import ForumReply
 from .models import TrainerReview
 from .models import TrainerBlog
 from .models import Workout
-from .serializers import ClientTrainerSerializer, WorkoutSerializer
+from .serializers import ClientTrainerSerializer, TrainerBlogSerializer, TrainerReviewSerializer, WorkoutSerializer
 from .serializers import ForumPostSerializer
 from .serializers import ForumReplySerializer
 from .serializers import TrainerReview
@@ -89,7 +89,23 @@ class TrainerClients(APIView):
 
     def get(self,request,trainer_id):
         clients = ClientTrainer.objects.filter(trainer_id = trainer_id)
-        serializer = ClientTrainerSerializer(clients, many=True)
+        serializer = ClientsTrainer(clients, many=True)
+        return Response(serializer.data)
+
+
+class ClientsTrainer(APIView):
+
+    permission_classes = [AllowAny]
+
+    def get_object(self,pk):
+        try:
+            return ClientTrainer.objects.get(pk=pk)
+        except ClientTrainer.DoesNotExist:
+            raise Http404
+
+    def get(self,request,client_id):
+        trainer = ClientTrainer.objects.filter(client_id = client_id)
+        serializer = ClientTrainerSerializer(trainer, many=True)
         return Response(serializer.data)
 
 class ForumPostList(APIView):
@@ -109,6 +125,9 @@ class ForumPostList(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 class ForumReplyList(APIView):
+
+    permission_classes = [AllowAny]
+
     def get(self,request):
         reply = ForumReply.objects.all()
         serializer = ForumReplySerializer(reply, many = True)
@@ -120,3 +139,66 @@ class ForumReplyList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class TrainerReviews(APIView):
+
+    permission_classes = [AllowAny]
+
+    def get(self,request):
+        review = TrainerReview.objects.all()
+        serializer = ForumPostSerializer(review, many = True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        serializer = TrainerReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class TrainerReviewDetails(APIView):
+    
+    permission_classes = [AllowAny]
+
+    def get_object(self,pk):
+        try:
+            return TrainerReview.objects.get(pk=pk)
+        except TrainerReview.DoesNotExist:
+            raise Http404
+    
+    def get(self,request,user_id):
+        review = TrainerReview.objects.filter(user_id = user_id)
+        serializer = TrainerReviewSerializer(review, many=True)
+        return Response(serializer.data)
+
+class TrainerBlogList(APIView):
+
+    permission_classes = [AllowAny]
+
+    def get(self,request):
+        review = TrainerBlog.objects.all()
+        serializer = TrainerBlogSerializer(review, many = True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        serializer = TrainerReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
+class TrainerBlogDetail(APIView):
+
+    permission_classes = [AllowAny]
+
+    def get_object(self,pk):
+        try:
+            return TrainerBlog.objects.get(pk=pk)
+        except TrainerReview.DoesNotExist:
+            raise Http404
+    
+    def get(self,request,user_id):
+        review = TrainerBlog.objects.filter(user_id = user_id)
+        serializer = TrainerBlogSerializer(review, many=True)
+        return Response(serializer.data)
