@@ -13,6 +13,7 @@ class ForumPost(models.Model):
 
 class ForumReply(models.Model):
     comment = models.ForeignKey(ForumPost, null=True,blank=True,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True,blank=True,on_delete=models.CASCADE)
     body = models.CharField(max_length=1000,null=True)
 
 class TrainerReview(models.Model):

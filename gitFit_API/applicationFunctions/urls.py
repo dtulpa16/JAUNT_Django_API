@@ -8,6 +8,7 @@ urlpatterns = [
     path('clients/<trainer_id>/', views.TrainerClients.as_view()),
     path('trainer/<client_id>/', views.ClientsTrainer.as_view()),
     path('forumpost/', views.ForumPostList.as_view()),
+    path('forumpost/<int:pk>/', views.ForumPostDetail.as_view()),
     path('forumpost/<int:comment>/reply/', views.ViewReply.as_view()),
     path('forumreply/', views.ForumReplyList.as_view()),
     path('review/', views.TrainerReviews.as_view()),

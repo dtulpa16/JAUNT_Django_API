@@ -26,7 +26,7 @@ class ForumPostSerializer(serializers.ModelSerializer):
 class ForumReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = ForumReply
-        fields = ('id', 'comment', 'body')
+        fields = ('id', 'comment','user', 'body')
 
 class TrainerReviewSerializer(serializers.ModelSerializer):
     class Meta:
