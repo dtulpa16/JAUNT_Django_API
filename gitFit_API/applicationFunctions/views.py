@@ -139,6 +139,17 @@ class ForumReplyList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+class ViewReply(APIView):
+    def get_object(self,pk):
+        try:
+            return ForumReply.objects.get(pk=pk)
+        except ForumReply.DoesNotExist:
+            raise Http404
+    
+    def get(self,request, comment):
+        reply = ForumReply.objects.filter(comment_id=comment)
+        serializer = ForumReplySerializer(reply, many=True)
+        return Response(serializer.data)
 
 class TrainerReviews(APIView):
 
