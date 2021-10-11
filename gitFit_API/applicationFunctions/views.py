@@ -89,7 +89,7 @@ class TrainerClients(APIView):
 
     def get(self,request,trainer_id):
         clients = ClientTrainer.objects.filter(trainer_id = trainer_id)
-        serializer = ClientsTrainer(clients, many=True)
+        serializer = ClientTrainerSerializer(clients, many=True)
         return Response(serializer.data)
 
 
