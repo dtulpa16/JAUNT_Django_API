@@ -1,7 +1,7 @@
-
+from rest_framework import status
 from rest_framework.status import HTTP_404_NOT_FOUND
 from rest_framework.views import APIView
-from .serializers import RegistrationSerializer
+from .serializers import CalorieSerializer, RegistrationSerializer
 from rest_framework import generics, response
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -34,3 +34,11 @@ class UserDetail(APIView):
         comment = self.get_object(pk)
         serializer = RegistrationSerializer(comment)
         return Response(serializer.data)
+
+    def put(self,request,pk):
+        user = self.get_object(pk)
+        serializer = CalorieSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
