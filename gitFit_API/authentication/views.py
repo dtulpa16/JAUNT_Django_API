@@ -1,10 +1,12 @@
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.status import HTTP_404_NOT_FOUND
 from rest_framework.views import APIView
 from .serializers import CalorieSerializer, RegistrationSerializer
 from rest_framework import generics, response
 from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -24,6 +26,10 @@ class UserView(APIView):
         return Response(serializer.data)
 
 class UserDetail(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+
     def get_object(self,pk):
         try:
             return User.objects.get(pk=pk)
@@ -42,3 +48,8 @@ class UserDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+

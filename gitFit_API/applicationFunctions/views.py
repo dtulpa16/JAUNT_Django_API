@@ -23,7 +23,7 @@ User = get_user_model()
 
 class WorkoutList(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     
     def get(self,request):
         workouts = Workout.objects.all()
@@ -40,7 +40,7 @@ class WorkoutList(APIView):
 
 class ViewClientWorkout(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     
     def get_object(self,pk):
         try:
@@ -63,7 +63,7 @@ class ViewClientWorkout(APIView):
 
 class AssignTrainer(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
         clients = ClientTrainer.objects.all()
@@ -79,7 +79,7 @@ class AssignTrainer(APIView):
 
 class TrainerClients(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self,pk):
         try:
@@ -95,7 +95,7 @@ class TrainerClients(APIView):
 
 class ClientsTrainer(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self,pk):
         try:
@@ -126,7 +126,7 @@ class ForumPostList(APIView):
 
 class ForumPostDetail(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     
     def get_object(self,pk):
         try:
@@ -141,7 +141,7 @@ class ForumPostDetail(APIView):
 
 class ForumReplyList(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
         reply = ForumReply.objects.all()
@@ -155,6 +155,9 @@ class ForumReplyList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 class ViewReply(APIView):
+
+    permission_classes = [IsAuthenticated]
+
     def get_object(self,pk):
         try:
             return ForumReply.objects.get(pk=pk)
@@ -168,7 +171,7 @@ class ViewReply(APIView):
 
 class TrainerReviews(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
         review = TrainerReview.objects.all()
@@ -184,7 +187,7 @@ class TrainerReviews(APIView):
 
 class TrainerReviewDetails(APIView):
     
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self,pk):
         try:
@@ -199,7 +202,7 @@ class TrainerReviewDetails(APIView):
 
 class TrainerBlogList(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
         review = TrainerBlog.objects.all()
@@ -216,7 +219,7 @@ class TrainerBlogList(APIView):
 
 class TrainerBlogDetail(APIView):
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self,pk):
         try:
