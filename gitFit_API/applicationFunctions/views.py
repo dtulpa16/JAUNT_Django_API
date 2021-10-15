@@ -23,7 +23,7 @@ User = get_user_model()
 
 class WorkoutList(APIView):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     
     def get(self,request):
         workouts = Workout.objects.all()
@@ -63,7 +63,7 @@ class ViewClientWorkout(APIView):
 
 class AssignTrainer(APIView):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self,request):
         clients = ClientTrainer.objects.all()
@@ -171,7 +171,7 @@ class ViewReply(APIView):
 
 class TrainerReviews(APIView):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self,request):
         review = TrainerReview.objects.all()
@@ -187,7 +187,7 @@ class TrainerReviews(APIView):
 
 class TrainerReviewDetails(APIView):
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_object(self,pk):
         try:
