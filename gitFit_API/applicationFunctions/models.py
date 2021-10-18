@@ -25,7 +25,7 @@ class TrainerBlog(models.Model):
     body = models.CharField(max_length=1000,null=True)
 
 class Workout(models.Model):
-    user = models.ForeignKey(User, null=True,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,blank=True, null=True,on_delete=models.CASCADE)
     notes = models.CharField(max_length=1000,null=True,blank=True)
     #day1
     day1ex1 = models.CharField(max_length=50,null=True)
